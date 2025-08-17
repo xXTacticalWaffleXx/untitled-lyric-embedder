@@ -41,6 +41,7 @@ def main():
 def check_compatibility(fileName):
     fileExtension = fileName.rsplit(".", 1)[1]
     if fileExtension == "mp3":
+        print(fileName)
         Handle_MP3(fileName)
     else:
         print(f"{fileName} this script currently only supports mp3 files, sorry TwT")
@@ -63,6 +64,9 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
         if response.status_code == 200:
             lyrics = list()
             RawSyncedLyrics = ""
+            if response.json()["syncedLyrics"] == None:
+                print(f"{songTitle.replace("-", " ")} has an entry on LRCLIB but no lyrics, is {songTitle} instrumental?")
+                sys.exit()
             for line in response.json()["syncedLyrics"].splitlines():
                 RawSyncedLyrics = RawSyncedLyrics + line.replace(" ", "", 1) + "\n"
             for line in response.json()["syncedLyrics"].splitlines():
