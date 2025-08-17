@@ -11,6 +11,13 @@ from mutagen.mp3 import MP3
 
 fileName = sys.argv[1]
 
+def main():
+    fileExtension = fileName.rsplit(".", 1)[1]
+    if fileExtension == "mp3":
+        Handle_MP3()
+    else:
+        print("this script currently only supports mp3 files, sorry TwT")
+
 def api_call(songTitle, songArtist, songAlbum, songDuration):
     songTitle = songTitle.replace(" ", "-")
     songArtist = songArtist.replace(" ", "-")
@@ -79,4 +86,4 @@ def Handle_MP3():
     audioTags.save(v2_version=3)
     return 0
 
-Handle_MP3()
+main()
