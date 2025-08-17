@@ -4,9 +4,11 @@ class args:
     recursive = False
     debug = False
     dryRun = False
+    help = True
+    target = ""
 
 def handler():
-    if len(sys.argv) -2 != 0: # testing if arguments exist
+    if len(sys.argv) -1 != 0: # testing if arguments exist
         for x in sys.argv:
             match x:
                 case "-r":
@@ -15,5 +17,13 @@ def handler():
                     args.debug = True
                 case "-D":
                     args.dryRun = True
+                case "-h":
+                    args.help = True
+                case _:
+                    if x == sys.argv[-1]:
+                        args.target = x
+                    else:
+                        print("unexpected tag in commandline")
+                        sys.exit()
                     
     return args

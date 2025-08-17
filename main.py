@@ -11,6 +11,7 @@ import json
 import os
 
 import arguments
+from help import print_help
 
 from mutagen.id3 import ID3, SYLT, Encoding, USLT
 from mutagen.mp3 import MP3
@@ -18,7 +19,12 @@ from mutagen.mp3 import MP3
 target = sys.argv[-1]
 args = arguments.handler()
 
+versionNumber = "vbeta0.0.0"
+
 def main():
+    if args.target == "": sys.exit()
+    if args.help:
+        print_help()
     if args.recursive:
         if os.path.isdir(target):
             for x in os.listdir(target):
@@ -47,7 +53,7 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
     url = f"https://lrclib.net/api/get?artist_name={songArtist}&track_name={songTitle}&album_name={songAlbum}&duration={songDuration}"
 
     headers = {
-        'User-Agent': 'Unnamed lyric embedding script vbeta0.0.1 no homepage yet'
+        'User-Agent': f'Unnamed lyric embedding script v0.0.0 no homepage yet'
     }
     if args.debug: print(url)
     
