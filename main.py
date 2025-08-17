@@ -76,7 +76,6 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
         return 1
     
 def Handle_MP3(fileName):
-    print("dingus")
     audioTags = ID3(fileName)
 
     songTitle = str(audioTags.get('TIT2'))
@@ -99,7 +98,6 @@ def Handle_MP3(fileName):
     # fuck musicolet, musicolet is my fucking opp, for some fucking bastard
     # reason, musicolet wants syncronised lyrics to be embeded into the
     # non synced lyrics tag
-    print(RawSyncedLyrics)
     audioTags.setall('USLT', [USLT(
         encoding=Encoding.UTF8,
         lang="   ",
