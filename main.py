@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #TODO: failback to just providing a seperate lyrics file if an embed handler doesn't exist
 #TODO: make script exit on api call failure, current behaviour will try to set the lyrics to "1"
 
