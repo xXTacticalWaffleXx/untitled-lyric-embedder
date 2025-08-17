@@ -25,10 +25,13 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
 
     url = f"https://lrclib.net/api/get?artist_name={songArtist}&track_name={songTitle}&album_name={songAlbum}&duration={songDuration}"
 
+    headers = {
+        'User-Agent': 'Unnamed lyric embedding script vbeta0.0.1 no homepage yet'
+    }
     print(url)
     
     try:
-        response = requests.get(url)
+        response = requests.get(url, headers)
 
         if response.status_code == 200:
             lyrics = list()
