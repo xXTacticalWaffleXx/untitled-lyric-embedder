@@ -33,7 +33,7 @@ def main():
             print(f"either {target} doesn't exist or it isn't a directory")
     else:
         if os.path.isfile(target):
-            check_compatibility()
+            check_compatibility(target)
         else:
             print(f"either {target} doesn't exist or it isn't a file")
         
