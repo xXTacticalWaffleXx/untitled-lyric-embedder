@@ -88,24 +88,27 @@ def Handle_MP3(fileName):
     lyrics = api_call(songTitle, songArtist, songAlbum, songDuration)
     RawSyncedLyrics = lyrics[1]
 
-    audioTags.setall('SYLT', [SYLT(
-        encoding=Encoding.UTF8,
-        lang="eng",
-        format=2,
-        type=1,
-        text=lyrics[0]
-    )])
-    # fuck musicolet, musicolet is my fucking opp, for some fucking bastard
-    # reason, musicolet wants syncronised lyrics to be embeded into the
-    # non synced lyrics tag
-    audioTags.setall('USLT', [USLT(
-        encoding=Encoding.UTF8,
-        lang="   ",
-        format=2,
-        type=1,
-        text=RawSyncedLyrics
-    )])
-    audioTags.save(v2_version=3)
-    return 0
+    if args.dryRun:
+        print(RawSyncedLyrics)
+    else:
+        audioTags.setall('SYLT', [SYLT(
+            encoding=Encoding.UTF8,
+            lang="eng",
+            format=2,
+            type=1,
+            text=lyrics[0]
+        )])
+        # fuck musicolet, musicolet is my fucking opp, for some fucking bastard
+        # reason, musicolet wants syncronised lyrics to be embeded into the
+        # non synced lyrics tag
+        audioTags.setall('USLT', [USLT(
+            encoding=Encoding.UTF8,
+            lang="   ",
+            format=2,
+            type=1,
+            text=RawSyncedLyrics
+        )])
+        audioTags.save(v2_version=3)
+        return 0
 
 main()
