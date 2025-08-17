@@ -5,16 +5,34 @@ import requests
 import mutagen
 import sys
 import json
+import os
+
+import arguments
 
 from mutagen.id3 import ID3, SYLT, Encoding, USLT
 from mutagen.mp3 import MP3
 
-fileName = sys.argv[1]
+target = sys.argv[-1]
+args = arguments.handler()
 
 def main():
+    if args.recursive:
+        if os.path.isdir(target):
+            for x in os.listdir(target):
+                check_compatibility(target + "/" + x)
+        else:
+            print(f"either {target} doesn't exist or it isn't a directory")
+    else:
+        if os.path.isfile(target):
+            check_compatibility()
+        else:
+            print(f"either {target} doesn't exist or it isn't a file")
+        
+
+def check_compatibility(fileName):
     fileExtension = fileName.rsplit(".", 1)[1]
     if fileExtension == "mp3":
-        Handle_MP3()
+        Handle_MP3(fileName)
     else:
         print("this script currently only supports mp3 files, sorry TwT")
 
@@ -54,7 +72,7 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
         print('error ', e)
         return 1
     
-def Handle_MP3():
+def Handle_MP3(fileName):
     print("dingus")
     audioTags = ID3(fileName)
 
