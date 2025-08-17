@@ -4,7 +4,7 @@ class args:
     recursive = False
     debug = False
     dryRun = False
-    help = True
+    help = False
     target = ""
 
 def handler():
