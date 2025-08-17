@@ -49,7 +49,7 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
     headers = {
         'User-Agent': 'Unnamed lyric embedding script vbeta0.0.1 no homepage yet'
     }
-    print(url)
+    if args.debug: print(url)
     
     try:
         response = requests.get(url, headers)

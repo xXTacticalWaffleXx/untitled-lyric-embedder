@@ -2,6 +2,7 @@ import sys
 
 class args:
     recursive = False
+    debug = False
 
 def handler():
     if len(sys.argv) -2 != 0: # testing if arguments exist
@@ -9,4 +10,6 @@ def handler():
             match x:
                 case "-r":
                     args.recursive = True
+                case "-d":
+                    args.debug = True
     return args
