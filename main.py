@@ -65,7 +65,9 @@ def Handle_MP3():
         type=1,
         text=lyrics[0]
     )])
-    # fuck musicolet, musicolet is my fucking opp
+    # fuck musicolet, musicolet is my fucking opp, for some fucking bastard
+    # reason, musicolet wants syncronised lyrics to be embeded into the
+    # non synced lyrics tag
     print(RawSyncedLyrics)
     audioTags.setall('USLT', [USLT(
         encoding=Encoding.UTF8,
