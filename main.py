@@ -4,6 +4,9 @@
 #TODO: move format handler functions to a seperate file
 #TODO: for some reason when ran on my bullets folder the script is failing on an invisible file called "AlbumArtSmall.jpg"
 
+#unimportant tasks
+#TODO: add some sort of blank lyric to instrumental songs
+
 import requests
 import mutagen
 import sys
