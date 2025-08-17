@@ -77,10 +77,10 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
             return (lyrics, RawSyncedLyrics)
         else:
             print('error ', response.status_code)
-            return 1
+            sys.exit()
     except requests.exceptions.RequestException as e:
         print('error ', e)
-        return 1
+        sys.exit()
     
 def Handle_MP3(fileName):
     audioTags = ID3(fileName)
