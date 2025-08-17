@@ -22,8 +22,5 @@ def handler():
                 case _:
                     if x == sys.argv[-1]:
                         args.target = x
-                    else:
-                        print("unexpected tag in commandline")
-                        sys.exit()
                     
     return args
