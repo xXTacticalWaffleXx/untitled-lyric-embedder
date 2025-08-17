@@ -1,6 +1,6 @@
-#TODO: write a main function that determines what function to call to get the required atributes
-#TODO: write a function that adds the syncronised lyrics to the specified file if possible, failback to just providing a seperate lyrics file
+#TODO: failback to just providing a seperate lyrics file if an embed handler doesn't exist
 #TODO: make script exit on api call failure, current behaviour will try to set the lyrics to "1"
+
 import requests
 import mutagen
 import sys
