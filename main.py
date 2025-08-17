@@ -3,6 +3,7 @@
 #TODO: failback to just providing a seperate lyrics file if an embed handler doesn't exist
 #TODO: make script exit on api call failure, current behaviour will try to set the lyrics to "1"
 #TODO: move format handler functions to a seperate file
+#TODO: for some reason when ran on my bullets folder the script is failing on an invisible file called "AlbumArtSmall.jpg"
 
 import requests
 import mutagen
@@ -43,7 +44,7 @@ def check_compatibility(fileName):
     if fileExtension == "mp3":
         Handle_MP3(fileName)
     else:
-        print("this script currently only supports mp3 files, sorry TwT")
+        print(f"{fileName} this script currently only supports mp3 files, sorry TwT")
 
 def api_call(songTitle, songArtist, songAlbum, songDuration):
     songTitle = songTitle.replace(" ", "-")
