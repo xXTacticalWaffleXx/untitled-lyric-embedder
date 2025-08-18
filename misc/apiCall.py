@@ -24,8 +24,24 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
 
         if response.status_code == 200:
             if response.json()["syncedLyrics"] == None:
-                print(f"{songTitle.replace("-", " ")} has an entry on LRCLIB but no lyrics, is {songTitle} instrumental?")
-                return -1
+                print(f"{songTitle.replace("-", " ")} has an entry on LRCLIB but no syncronised lyrics,")
+                if response.json()["plainLyrics"] != None:
+                    print("Unsynchronised lyrics were found, do you want to failback to unsynchronised lyrics, keep looking for syncronised lyrics or skip this song?\n\
+                          [F]ailback, [K]eep looking, [S]kip")
+                else: print ("This song has a LRCLIB entry but lyrics were not found, do you want to keep looking or skip this song?\n\
+                             [K]eep looking, [S]kip")
+                while True:
+                    match input():
+                        case "F" | "f":
+                            if response.json()["plainLyrics"] == None: continue
+                            return process_lyrics(response, False)
+                        case "K" | "k":
+                            print("keep looking isn't implemented yet, sorry TwT")
+                            return -1
+                        case "S" | "s":
+                            print("skipping this song")
+                            return -1
+                        case _: continue
             return process_lyrics(response)
         else:
             print('error ', response.status_code)
