@@ -28,3 +28,5 @@ def handler():
                         args.target = x
                     
     return args
+
+args = handler()

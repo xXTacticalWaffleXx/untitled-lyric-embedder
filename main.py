@@ -21,14 +21,11 @@ import sys
 import json
 import os
 
-import arguments
-from help import print_help
-
-from mutagen.id3 import ID3, SYLT, Encoding, USLT
-from mutagen.mp3 import MP3
+from misc.arguments import args
+from misc.help import print_help
+from handlers.mp3 import handle_MP3
 
 target = sys.argv[-1]
-args = arguments.handler()
 
 versionNumber = "vbeta0.0.0"
 
@@ -53,93 +50,8 @@ def check_compatibility(fileName):
     fileExtension = fileName.rsplit(".", 1)[1]
     if fileExtension == "mp3":
         print(fileName)
-        Handle_MP3(fileName)
+        handle_MP3(fileName)
     else:
         print(f"{fileName} this script currently only supports mp3 files, sorry TwT")
-
-def process_lyrics(response, songTitle):
-    lyrics = list()
-    RawSyncedLyrics = ""
-    if response.json()["syncedLyrics"] == None:
-        print(f"{songTitle.replace("-", " ")} has an entry on LRCLIB but no lyrics, is {songTitle} instrumental?")
-        return -1
-    for line in response.json()["syncedLyrics"].splitlines():
-        RawSyncedLyrics = RawSyncedLyrics + line.replace(" ", "", 1) + "\n"
-    for line in response.json()["syncedLyrics"].splitlines():
-        x = line.split()[0]
-        x = x.replace('[', '')
-        x = x.replace(']', '')
-        seconds = round(float(x.split(':')[1])) + (int(x.split(':')[0]) * 60)
-        miliseconds = seconds * 1000
-        lyrics.append((line.split(' ', 1)[1], miliseconds))
-    return (lyrics, RawSyncedLyrics)
-
-
-def api_call(songTitle, songArtist, songAlbum, songDuration):
-    songTitle = songTitle.replace(" ", "-")
-    songArtist = songArtist.replace(" ", "-")
-    songAlbum = songAlbum.replace(" ", "-")
-
-    url = f"https://lrclib.net/api/get?artist_name={songArtist}&track_name={songTitle}&album_name={songAlbum}&duration={songDuration}"
-    headers = {
-        'User-Agent': f'Unnamed lyric embedding script v0.0.0 no homepage yet'
-    }
-
-    if args.debug: print(url)
-    elif args.noApiCall: # the point of noApiCall is just to generate the URL for debug purposes
-        print(url)
-        return -1
     
-    try:
-        response = requests.get(url, headers)
-
-        if response.status_code == 200:
-            return process_lyrics(response, songTitle)
-        else:
-            print('error ', response.status_code)
-            sys.exit()
-    except requests.exceptions.RequestException as e:
-        print('error ', e)
-        sys.exit()
-    
-def Handle_MP3(fileName):
-    audioTags = ID3(fileName)
-
-    songTitle = str(audioTags.get('TIT2'))
-    songArtist = str(audioTags.get('TPE1'))
-    songAlbum = str(audioTags.get('TALB'))
-
-    audio = MP3(fileName) # ID3 is only the tags and duration isn't stored in ID3 tags, we have to use streaminfo
-    songDuration = round(float(audio.info.pprint().split(", ")[4].split()[0])) # i get the distinct impression this is a fucking terrible way to do this, if anyone has a better idea please do let me know
-    
-    api_results = api_call(songTitle, songArtist, songAlbum, songDuration)
-    if api_results != -1:
-        lyrics = api_results
-    else:
-        return
-    RawSyncedLyrics = lyrics[1]
-
-    if args.dryRun:
-        print(RawSyncedLyrics)
-    else:
-        audioTags.setall('SYLT', [SYLT(
-            encoding=Encoding.UTF8,
-            lang="eng",
-            format=2,
-            type=1,
-            text=lyrics[0]
-        )])
-        # fuck musicolet, musicolet is my fucking opp, for some fucking bastard
-        # reason, musicolet wants syncronised lyrics to be embeded into the
-        # non synced lyrics tag
-        audioTags.setall('USLT', [USLT(
-            encoding=Encoding.UTF8,
-            lang="   ",
-            format=2,
-            type=1,
-            text=RawSyncedLyrics
-        )])
-        audioTags.save(v2_version=3)
-        return 0
-
 main()
