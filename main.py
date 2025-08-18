@@ -6,7 +6,7 @@
 #TODO: recursion isn't true recursion, I.E if script is ran on a folder containing subfolders even with the recursive flag not only wont those subfolders not be scanned they will cause an exception
 #TODO: a 404 shouldn't cause the script to exit in recursive mode
 #TODO: make script failback to plain lyrics if synced fails
-#TODO: how the fuck do i handle multiple lyrics entries like with butterfly knife
+#TODO: how the fuck do i handle multiple lyrics entries like with butterfly knife, maybe send the tags to the /ap/search endpoint
 #TODO: also add the ability to add lyrics with an LRCLIB id
 
 #unimportant tasks
