@@ -32,13 +32,13 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
                              [K]eep looking, [S]kip")
                 while True:
                     match input():
-                        case "F" | "f":
+                        case "F" | "f" | args.autoFailback:
                             if response.json()["plainLyrics"] == None: continue
                             return process_lyrics(response, False)
-                        case "K" | "k":
+                        case "K" | "k" | args.autoContinueSearch:
                             print("keep looking isn't implemented yet, sorry TwT")
                             return -1
-                        case "S" | "s":
+                        case "S" | "s" | args.autoSkip:
                             print("skipping this song")
                             return -1
                         case _: continue

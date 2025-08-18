@@ -6,6 +6,9 @@ class args:
     dryRun = False
     help = False
     noApiCall = False
+    autoSkip = False
+    autoFailback = False
+    autoContinueSearch = False
 
     target = ""
 
@@ -23,6 +26,12 @@ def handler():
                     args.help = True
                 case "-N":
                     args.noApiCall = True
+                case "--lyrics-autoSkip":
+                    args.autoSkip = True
+                case "--lyrics-autoFailback":
+                    args.autoFailback = True
+                case "--lyrics-autoContinue":
+                    args.autoContinueSearch = True
                 case _:
                     if x == sys.argv[-1]:
                         args.target = x
