@@ -5,6 +5,8 @@ class args:
     debug = False
     dryRun = False
     help = False
+    noApiCall = False
+
     target = ""
 
 def handler():
@@ -19,6 +21,8 @@ def handler():
                     args.dryRun = True
                 case "-h":
                     args.help = True
+                case "-N":
+                    args.noApiCall = True
                 case _:
                     if x == sys.argv[-1]:
                         args.target = x

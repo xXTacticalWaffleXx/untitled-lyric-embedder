@@ -66,7 +66,11 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
     headers = {
         'User-Agent': f'Unnamed lyric embedding script v0.0.0 no homepage yet'
     }
+
     if args.debug: print(url)
+    elif args.noApiCall: # the point of noApiCall is just to generate the URL for debug purposes
+        print(url)
+        return -1
     
     try:
         response = requests.get(url, headers)
