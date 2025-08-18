@@ -9,6 +9,9 @@
 #TODO: how the fuck do i handle multiple lyrics entries like with butterfly knife, maybe send the tags to the /ap/search endpoint
 #TODO: also add the ability to add lyrics with an LRCLIB id
 
+#TODO: if no synced lyrics are found in the exact match entry, fail back to non exact searching and give the user a yes/no prompt for the first sync lyrics detected, maybe also allow the user to flip through them with something like confirm/next/failback to unsynced
+# if user doesn't find lyrics they are ok or asks to fail back then do the same with non synced lyrics
+
 #unimportant tasks
 #TODO: add some sort of blank lyric to instrumental songs
 
