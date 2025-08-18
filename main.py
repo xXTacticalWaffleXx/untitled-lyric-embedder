@@ -63,7 +63,6 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
     songAlbum = songAlbum.replace(" ", "-")
 
     url = f"https://lrclib.net/api/get?artist_name={songArtist}&track_name={songTitle}&album_name={songAlbum}&duration={songDuration}"
-
     headers = {
         'User-Agent': f'Unnamed lyric embedding script v0.0.0 no homepage yet'
     }
