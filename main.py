@@ -7,6 +7,7 @@
 #TODO: a 404 shouldn't cause the script to exit in recursive mode
 #TODO: make script failback to plain lyrics if synced fails
 #TODO: how the fuck do i handle multiple lyrics entries like with butterfly knife
+#TODO: also add the ability to add lyrics with an LRCLIB id
 
 #unimportant tasks
 #TODO: add some sort of blank lyric to instrumental songs
