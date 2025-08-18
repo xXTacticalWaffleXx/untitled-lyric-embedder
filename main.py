@@ -74,7 +74,7 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
             RawSyncedLyrics = ""
             if response.json()["syncedLyrics"] == None:
                 print(f"{songTitle.replace("-", " ")} has an entry on LRCLIB but no lyrics, is {songTitle} instrumental?")
-                sys.exit()
+                return -1
             for line in response.json()["syncedLyrics"].splitlines():
                 RawSyncedLyrics = RawSyncedLyrics + line.replace(" ", "", 1) + "\n"
             for line in response.json()["syncedLyrics"].splitlines():
@@ -103,7 +103,11 @@ def Handle_MP3(fileName):
     audio = MP3(fileName) # ID3 is only the tags and duration isn't stored in ID3 tags, we have to use streaminfo
     songDuration = round(float(audio.info.pprint().split(", ")[4].split()[0])) # i get the distinct impression this is a fucking terrible way to do this, if anyone has a better idea please do let me know
     
-    lyrics = api_call(songTitle, songArtist, songAlbum, songDuration)
+    api_results = api_call(songTitle, songArtist, songAlbum, songDuration)
+    if api_results != -1:
+        lyrics = api_results
+    else:
+        return
     RawSyncedLyrics = lyrics[1]
 
     if args.dryRun:
