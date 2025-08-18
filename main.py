@@ -57,6 +57,24 @@ def check_compatibility(fileName):
     else:
         print(f"{fileName} this script currently only supports mp3 files, sorry TwT")
 
+def process_lyrics(response, songTitle):
+    lyrics = list()
+    RawSyncedLyrics = ""
+    if response.json()["syncedLyrics"] == None:
+        print(f"{songTitle.replace("-", " ")} has an entry on LRCLIB but no lyrics, is {songTitle} instrumental?")
+        return -1
+    for line in response.json()["syncedLyrics"].splitlines():
+        RawSyncedLyrics = RawSyncedLyrics + line.replace(" ", "", 1) + "\n"
+    for line in response.json()["syncedLyrics"].splitlines():
+        x = line.split()[0]
+        x = x.replace('[', '')
+        x = x.replace(']', '')
+        seconds = round(float(x.split(':')[1])) + (int(x.split(':')[0]) * 60)
+        miliseconds = seconds * 1000
+        lyrics.append((line.split(' ', 1)[1], miliseconds))
+    return (lyrics, RawSyncedLyrics)
+
+
 def api_call(songTitle, songArtist, songAlbum, songDuration):
     songTitle = songTitle.replace(" ", "-")
     songArtist = songArtist.replace(" ", "-")
@@ -76,22 +94,7 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
         response = requests.get(url, headers)
 
         if response.status_code == 200:
-            lyrics = list()
-            RawSyncedLyrics = ""
-            if response.json()["syncedLyrics"] == None:
-                print(f"{songTitle.replace("-", " ")} has an entry on LRCLIB but no lyrics, is {songTitle} instrumental?")
-                return -1
-            for line in response.json()["syncedLyrics"].splitlines():
-                RawSyncedLyrics = RawSyncedLyrics + line.replace(" ", "", 1) + "\n"
-            for line in response.json()["syncedLyrics"].splitlines():
-                x = line.split()[0]
-                x = x.replace('[', '')
-                x = x.replace(']', '')
-                seconds = round(float(x.split(':')[1])) + (int(x.split(':')[0]) * 60)
-                miliseconds = seconds * 1000
-
-                lyrics.append((line.split(' ', 1)[1], miliseconds))
-            return (lyrics, RawSyncedLyrics)
+            return process_lyrics(response, songTitle)
         else:
             print('error ', response.status_code)
             sys.exit()
