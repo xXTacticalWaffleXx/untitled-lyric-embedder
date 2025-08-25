@@ -32,7 +32,7 @@ def main():
     if args.recursive:
         if os.path.isdir(target):
             for x in os.listdir(target):
-                check_compatibility(target + "/" + x)
+                check_compatibility(target + x)
         else:
             print(f"either {target} doesn't exist or it isn't a directory")
     else:
@@ -40,7 +40,6 @@ def main():
             check_compatibility(target)
         else:
             print(f"either {target} doesn't exist or it isn't a file")
-        
 
 def check_compatibility(fileName):
     fileExtension = fileName.rsplit(".", 1)[1]
