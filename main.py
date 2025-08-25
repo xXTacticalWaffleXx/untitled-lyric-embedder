@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 
-#TODO: failback to just providing a seperate lyrics file if an embed handler doesn't exist
-#TODO: move format handler functions to a seperate file
 #TODO: for some reason when ran on my bullets folder the script is failing on an invisible file called "AlbumArtSmall.jpg"
 #TODO: recursion isn't true recursion, I.E if script is ran on a folder containing subfolders even with the recursive flag not only wont those subfolders not be scanned they will cause an exception
-#TODO: a 404 shouldn't cause the script to exit in recursive mode
-#TODO: make script failback to plain lyrics if synced fails
 #TODO: how the fuck do i handle multiple lyrics entries like with butterfly knife, maybe send the tags to the /ap/search endpoint
 #TODO: also add the ability to add lyrics with an LRCLIB id
 
