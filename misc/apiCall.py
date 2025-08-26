@@ -11,6 +11,7 @@ no_synced_lyrics_message = '''Unsynchronised lyrics were found, do you want to f
 [F]ailback, [K]eep looking, [S]kip'''
 
 def api_call(songTitle, songArtist, songAlbum, songDuration):
+    humanReadableSongTitle = songTitle
     songTitle = songTitle.replace(" ", "-")
     songArtist = songArtist.replace(" ", "-")
     songAlbum = songAlbum.replace(" ", "-")
@@ -30,7 +31,7 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
 
         if response.status_code == 200:
             if response.json()["syncedLyrics"] == None:
-                print(f"{songTitle.replace("-", " ")}:")
+                print(f"{humanReadableSongTitle}:")
                 if response.json()["plainLyrics"] != None:
                     print(no_synced_lyrics_message)
                 else: print (no_lyric_message)
@@ -48,7 +49,10 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
                         case _: continue
             return process_lyrics(response)
         else:
-            print('error ', response.status_code)
+            if response.status_code == 404:
+                print(f"error 404: An entry for {humanReadableSongTitle} could not be found on LRCLIB, is the metadata of this file correct?")
+            else:
+                print('error', response.status_code)
             sys.exit()
     except requests.exceptions.RequestException as e:
         print('error ', e)
