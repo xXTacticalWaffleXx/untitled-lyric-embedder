@@ -67,6 +67,6 @@ def check_compatibility(filePath):
         case "flac":
             handle_flac(filePath)
         case _:
-            print(f"{filePath} this script currently only supports mp3 files, sorry TwT")
+            print(f"{filePath} this script currently only supports mp3 and flac files, sorry TwT")
     
 main()
