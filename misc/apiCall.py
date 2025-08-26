@@ -4,6 +4,12 @@ import sys
 from misc.processLyrics import process_lyrics
 from misc.arguments import args
 
+no_lyric_message = '''no lyrics were found in this songs entry, is this song instrumental? Do you want to keep looking or skip this song?\n\
+[K]eep looking, [S]kip'''
+
+no_synced_lyrics_message = '''Unsynchronised lyrics were found, do you want to failback to unsynchronised lyrics, keep looking for syncronised lyrics or skip this song?\n\
+[F]ailback, [K]eep looking, [S]kip'''
+
 def api_call(songTitle, songArtist, songAlbum, songDuration):
     songTitle = songTitle.replace(" ", "-")
     songArtist = songArtist.replace(" ", "-")
@@ -24,12 +30,10 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
 
         if response.status_code == 200:
             if response.json()["syncedLyrics"] == None:
-                print(f"{songTitle.replace("-", " ")} has an entry on LRCLIB but no syncronised lyrics,")
+                print(f"{songTitle.replace("-", " ")}:")
                 if response.json()["plainLyrics"] != None:
-                    print("Unsynchronised lyrics were found, do you want to failback to unsynchronised lyrics, keep looking for syncronised lyrics or skip this song?\n\
-                          [F]ailback, [K]eep looking, [S]kip")
-                else: print ("This song has a LRCLIB entry but lyrics were not found, do you want to keep looking or skip this song?\n\
-                             [K]eep looking, [S]kip")
+                    print(no_synced_lyrics_message)
+                else: print (no_lyric_message)
                 while True:
                     match input():
                         case "F" | "f" | args.autoFailback:
