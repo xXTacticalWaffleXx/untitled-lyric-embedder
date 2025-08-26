@@ -18,7 +18,9 @@ import os
 
 from misc.arguments import args
 from misc.help import print_help
+
 from handlers.mp3 import handle_MP3
+from handlers.flac import handle_flac
 
 target = sys.argv[-1]
 
@@ -62,6 +64,8 @@ def check_compatibility(fileName):
     match fileExtension:
         case "mp3":
             handle_MP3(fileName)
+        case "flac":
+            handle_flac(fileName)
         case _:
             print(f"{fileName} this script currently only supports mp3 files, sorry TwT")
     
