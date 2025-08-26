@@ -47,26 +47,27 @@ def handle_recursion(target):
     else:
         check_compatibility(target)
 
-def check_compatibility(fileName):
+def check_compatibility(filePath):
     # Messages skipping over WMP system files really clutter up the output so im detecting and silently
     # skipping them
     WMPSystemStrings = {'AlbumArtSmall.jpg', 'Folder.jpg'}
     # i hate this but can't think of a nicer way to do it, i'm terrible at python so if there is one please
     # do let me know
-    if fileName.rsplit("\\", 1)[1] in WMPSystemStrings\
-    or fileName.rsplit("\\", 1)[1].startswith("AlbumArt_") and fileName.rsplit("\\", 1)[1].endswith("_Large.jpg")\
-    or fileName.rsplit("\\", 1)[1].startswith("AlbumArt_") and fileName.rsplit("\\", 1)[1].endswith("_Small.jpg"):
-        if args.debug: print("DEBUG: Ignoring system file", fileName)
+    filename = filePath.rsplit("\\", 1)[1]
+    if filename in WMPSystemStrings\
+    or filename.startswith("AlbumArt_") and filename.endswith("_Large.jpg")\
+    or filename.startswith("AlbumArt_") and filename.endswith("_Small.jpg"):
+        if args.debug: print("DEBUG: Ignoring system file", filePath)
         return
     
-    fileExtension = fileName.rsplit(".", 1)[1]
-    print(fileName)
+    fileExtension = filePath.rsplit(".", 1)[1]
+    print(filePath)
     match fileExtension:
         case "mp3":
-            handle_MP3(fileName)
+            handle_MP3(filePath)
         case "flac":
-            handle_flac(fileName)
+            handle_flac(filePath)
         case _:
-            print(f"{fileName} this script currently only supports mp3 files, sorry TwT")
+            print(f"{filePath} this script currently only supports mp3 files, sorry TwT")
     
 main()
