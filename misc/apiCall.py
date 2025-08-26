@@ -10,6 +10,8 @@ no_lyric_message = '''no lyrics were found in this songs entry, is this song ins
 no_synced_lyrics_message = '''Unsynchronised lyrics were found, do you want to failback to unsynchronised lyrics, keep looking for syncronised lyrics or skip this song?\n\
 [F]ailback, [K]eep looking, [S]kip'''
 
+instrumental_message = 'This song is taged as instrumental on LRCLib: skipping'
+
 def api_call(songTitle, songArtist, songAlbum, songDuration):
     humanReadableSongTitle = songTitle
     songTitle = songTitle.replace(" ", "-")
@@ -32,7 +34,10 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
         if response.status_code == 200:
             if response.json()["syncedLyrics"] == None:
                 print(f"{humanReadableSongTitle}:")
-                if response.json()["plainLyrics"] != None:
+                if response.json()["instrumental"]: 
+                    print(instrumental_message)
+                    return -1
+                elif response.json()["plainLyrics"] != None:
                     print(no_synced_lyrics_message)
                 else: print (no_lyric_message)
                 while True:
