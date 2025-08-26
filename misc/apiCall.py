@@ -55,5 +55,5 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
                 print('error', response.status_code)
             sys.exit()
     except requests.exceptions.RequestException as e:
-        print('error ', e)
+        print('error ', e, 'please report this to me on github')
         sys.exit()
