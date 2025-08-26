@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-#TODO: for some reason when ran on my bullets folder the script is failing on an invisible file called "AlbumArtSmall.jpg"
 #TODO: how the fuck do i handle multiple lyrics entries like with butterfly knife, maybe send the tags to the /ap/search endpoint
 #TODO: also add the ability to add lyrics with an LRCLIB id
 
@@ -47,6 +46,15 @@ def handle_recursion(target):
         check_compatibility(target)
 
 def check_compatibility(fileName):
+    WMPSystemStrings = {'AlbumArtSmall.jpg', 'Folder.jpg'}
+    # i hate this but can't think of a nicer way to do it, i'm terrible at python so if there is one please
+    # do let me know
+    if fileName.rsplit("\\", 1)[1] in WMPSystemStrings\
+    or fileName.rsplit("\\", 1)[1].startswith("AlbumArt_") and fileName.rsplit("\\", 1)[1].endswith("_Large.jpg")\
+    or fileName.rsplit("\\", 1)[1].startswith("AlbumArt_") and fileName.rsplit("\\", 1)[1].endswith("_Small.jpg"):
+        if args.debug: print("DEBUG: Ignoring system file", fileName)
+        return
+    
     fileExtension = fileName.rsplit(".", 1)[1]
     if fileExtension == "mp3":
         print(fileName)
