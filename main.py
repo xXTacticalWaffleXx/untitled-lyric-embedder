@@ -58,10 +58,11 @@ def check_compatibility(fileName):
         return
     
     fileExtension = fileName.rsplit(".", 1)[1]
-    if fileExtension == "mp3":
-        print(fileName)
-        handle_MP3(fileName)
-    else:
-        print(f"{fileName} this script currently only supports mp3 files, sorry TwT")
+    print(fileName)
+    match fileExtension:
+        case "mp3":
+            handle_MP3(fileName)
+        case _:
+            print(f"{fileName} this script currently only supports mp3 files, sorry TwT")
     
 main()
