@@ -46,6 +46,8 @@ def handle_recursion(target):
         check_compatibility(target)
 
 def check_compatibility(fileName):
+    # Messages skipping over WMP system files really clutter up the output so im detecting and silently
+    # skipping them
     WMPSystemStrings = {'AlbumArtSmall.jpg', 'Folder.jpg'}
     # i hate this but can't think of a nicer way to do it, i'm terrible at python so if there is one please
     # do let me know
