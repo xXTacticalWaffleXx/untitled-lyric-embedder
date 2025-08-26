@@ -4,13 +4,13 @@ import sys
 from misc.processLyrics import process_lyrics
 from misc.arguments import args
 
-no_lyric_message = '''no lyrics were found in this songs entry, is this song instrumental? Do you want to keep looking or skip this song?\n\
+noLyricMessage = '''no lyrics were found in this songs entry, is this song instrumental? Do you want to keep looking or skip this song?\n\
 [K]eep looking, [S]kip'''
 
-no_synced_lyrics_message = '''Unsynchronised lyrics were found, do you want to failback to unsynchronised lyrics, keep looking for syncronised lyrics or skip this song?\n\
+noSyncedLyricsMessage = '''Unsynchronised lyrics were found, do you want to failback to unsynchronised lyrics, keep looking for syncronised lyrics or skip this song?\n\
 [F]ailback, [K]eep looking, [S]kip'''
 
-instrumental_message = 'This song is taged as instrumental on LRCLib: skipping'
+instrumentalMessage = 'This song is taged as instrumental on LRCLib: skipping'
 
 def api_call(songTitle, songArtist, songAlbum, songDuration):
     humanReadableSongTitle = songTitle
@@ -35,11 +35,11 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
             if response.json()["syncedLyrics"] == None:
                 print(f"{humanReadableSongTitle}:")
                 if response.json()["instrumental"]: 
-                    print(instrumental_message)
+                    print(instrumentalMessage)
                     return -1
                 elif response.json()["plainLyrics"] != None:
-                    print(no_synced_lyrics_message)
-                else: print (no_lyric_message)
+                    print(noSyncedLyricsMessage)
+                else: print (noLyricMessage)
                 while True:
                     match input():
                         case "F" | "f" | args.autoFailback:
