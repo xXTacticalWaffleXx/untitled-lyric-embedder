@@ -53,7 +53,7 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
                 print(f"error 404: An entry for {humanReadableSongTitle} could not be found on LRCLIB, is the metadata of this file correct?")
             else:
                 print('error', response.status_code)
-            sys.exit()
+            return -1
     except requests.exceptions.RequestException as e:
         print('error ', e, 'please report this to me on github')
         sys.exit()
