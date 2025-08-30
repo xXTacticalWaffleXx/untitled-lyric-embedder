@@ -47,11 +47,11 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
                             return process_lyrics(response, False)
                         case "K" | "k" | args.autoContinueSearch:
                             print("keep looking isn't implemented yet, sorry TwT")
-                            return -1
                         case "S" | "s" | args.autoSkip:
                             print("skipping this song")
                             return -1
                         case _: continue
+
             return process_lyrics(response)
         else:
             if response.status_code == 404:
