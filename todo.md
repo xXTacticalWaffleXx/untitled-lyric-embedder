@@ -15,6 +15,9 @@ asks to fail back then do the same with non synced lyrics
 catch errors in the float conversion in process_lyrics() and print an error 
 message requesting the bug be reported to me / return -1 if anything happens
 
+add separate modes for musicolet compatibility and compatibility with players
+that are expecting plain unsynced lyrics
+
 # less important
 also add the ability to add lyrics with an LRCLIB id
 
