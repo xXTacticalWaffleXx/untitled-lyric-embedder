@@ -1,21 +1,5 @@
 #!/usr/bin/env python3
 
-#TODO: if no synced lyrics are found in the exact match entry, fail back to non exact searching and give the user a yes/no prompt for the first sync lyrics detected, 
-# maybe also allow the user to flip through them with something like confirm/next/failback to unsynced if user doesn't find lyrics they are ok or asks to fail back 
-# then do the same with non synced lyrics
-
-#TODO: fix error where what appears to be LRC markdown is tripping up the program, see muscle museum on LRCLib
-
-#TODO: catch errors in the float conversion in process_lyrics() and return -1 if anything happens
-
-#TODO: make flac handler compatible with standard flac synced lyrics
-
-#less important tasks
-#TODO: also add the ability to add lyrics with an LRCLIB id
-
-#unimportant tasks
-#TODO: add some sort of blank lyric to instrumental songs
-
 import requests
 import mutagen
 import sys
