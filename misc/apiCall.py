@@ -41,12 +41,12 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
                     print(noSyncedLyricsMessage)
                 else: print (noLyricMessage)
                 while True:
-                    input = ""
-                    if args.autoContinueSearch: input = "k"
-                    if args.autoFailback: input = "f"
-                    if args.autoSkip: input = "s"
-                    if input == "": input = input()
-                    match input:
+                    user_input = str()
+                    if args.autoContinueSearch: user_input = "k"
+                    if args.autoFailback: user_input = "f"
+                    if args.autoSkip: user_input = "s"
+                    if user_input == "": user_input = input()
+                    match user_input:
                         case "F" | "f" | args.autoFailback:
                             if response.json()["plainLyrics"] == None: continue
                             return process_lyrics(response, False)
