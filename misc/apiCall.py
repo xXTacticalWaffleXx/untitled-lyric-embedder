@@ -41,6 +41,7 @@ def api_call(songTitle, songArtist, songAlbum, songDuration):
                     print(noSyncedLyricsMessage)
                 else: print (noLyricMessage)
                 while True:
+                    input = ""
                     if args.autoContinueSearch: input = "k"
                     if args.autoFailback: input = "f"
                     if args.autoSkip: input = "s"
