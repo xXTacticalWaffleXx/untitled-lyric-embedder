@@ -1,7 +1,7 @@
 from mutagen.id3 import ID3, SYLT, Encoding, USLT
 from mutagen.mp3 import MP3
 
-from misc.apiCall import api_call
+from api.apiCall import api_call
 from misc.arguments import args
 
 def handle_MP3(fileName):

@@ -1,6 +1,6 @@
 from mutagen.flac import FLAC, StreamInfo
 
-from misc.apiCall import api_call
+from api.apiCall import api_call
 from misc.arguments import args
 
 def handle_flac(filename):
