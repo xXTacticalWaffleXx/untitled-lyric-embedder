@@ -5,6 +5,7 @@ from misc.processLyrics import process_lyrics
 from misc.arguments import args
 
 from api.fuzzySearch import fuzzySearch
+from api.headers import headers
 
 noLyricMessage = '''no lyrics were found in this songs entry, is this song instrumental? Do you want to keep looking or skip this song?\n\
 [K]eep looking, [S]kip'''
@@ -21,9 +22,7 @@ def api_call(song):
     song.album = song.album.replace(" ", "-")
 
     url = f"https://lrclib.net/api/get?artist_name={song.artist}&track_name={song.title}&album_name={song.album}&duration={song.duration}"
-    headers = {
-        'User-Agent': f'Unnamed lyric embedding script v0.0.0 no homepage yet'
-    }
+
 
     if args.debug: print(url)
     elif args.noApiCall: # the point of noApiCall is just to generate the URL for debug purposes
