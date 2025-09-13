@@ -4,6 +4,8 @@ import sys
 from misc.processLyrics import process_lyrics
 from misc.arguments import args
 
+from api.fuzzySearch import fuzzySearch
+
 noLyricMessage = '''no lyrics were found in this songs entry, is this song instrumental? Do you want to keep looking or skip this song?\n\
 [K]eep looking, [S]kip'''
 
@@ -12,13 +14,13 @@ noSyncedLyricsMessage = '''Unsynchronised lyrics were found, do you want to fail
 
 instrumentalMessage = 'This song is taged as instrumental on LRCLib: skipping'
 
-def api_call(songTitle, songArtist, songAlbum, songDuration):
-    humanReadableSongTitle = songTitle
-    songTitle = songTitle.replace(" ", "-")
-    songArtist = songArtist.replace(" ", "-")
-    songAlbum = songAlbum.replace(" ", "-")
+def api_call(song):
+    humanReadableSongTitle = song.title
+    song.title = song.title.replace(" ", "-")
+    song.artist = song.artist.replace(" ", "-")
+    song.album = song.album.replace(" ", "-")
 
-    url = f"https://lrclib.net/api/get?artist_name={songArtist}&track_name={songTitle}&album_name={songAlbum}&duration={songDuration}"
+    url = f"https://lrclib.net/api/get?artist_name={song.artist}&track_name={song.title}&album_name={song.album}&duration={song.duration}"
     headers = {
         'User-Agent': f'Unnamed lyric embedding script v0.0.0 no homepage yet'
     }

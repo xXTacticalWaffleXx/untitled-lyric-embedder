@@ -3,15 +3,17 @@ from mutagen.mp3 import MP3
 
 from api.apiCall import api_call
 from misc.arguments import args
+from misc.songMetadata import songMetadata
 
 def handle_MP3(fileName):
     audioTags = ID3(fileName)
-    songTitle = str(audioTags.get('TIT2'))
-    songArtist = str(audioTags.get('TPE1'))
-    songAlbum = str(audioTags.get('TALB'))
     audio = MP3(fileName) # ID3 is only the tags and duration isn't stored in ID3 tags, we have to use streaminfo
     songDuration = round(float(audio.info.pprint().split(", ")[4].split()[0])) # i get the distinct impression this is a fucking terrible way to do this, if anyone has a better idea please do let me know
-    api_results = api_call(songTitle, songArtist, songAlbum, songDuration)
+    song = songMetadata(audioTags.get('TIT2')\
+                        , audioTags.get('TPE1')\
+                        , audioTags.get('TALB')\
+                        ,songDuration)
+    api_results = api_call(song)
     if api_results != -1:
         lyrics = api_results
     else:
