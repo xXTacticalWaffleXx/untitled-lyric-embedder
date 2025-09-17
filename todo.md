@@ -24,6 +24,7 @@ add an option to import lyrics from a text file
 
 add option to force fuzzy search
 
+implement the argparse library instead of handrolling my own function
 # less important
 also add the ability to add lyrics with an LRCLIB id
 
