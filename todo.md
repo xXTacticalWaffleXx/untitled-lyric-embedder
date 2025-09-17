@@ -5,6 +5,8 @@ see muscle museum on LRCLib
 
 make flac handler compatible with standard flac synced lyrics
 
+fix issue where album metadata with an & sign breaks the api call, see
+peace & love by dylan brady
 # Important changes
 If no synced lyrics are found in the exact match entry, fail back to non 
 exact searching and give the user a yes/no prompt for the first sync lyrics 
