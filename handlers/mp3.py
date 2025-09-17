@@ -8,7 +8,7 @@ from misc.songMetadata import songMetadata
 def handle_MP3(fileName):
     audioTags = ID3(fileName)
     audio = MP3(fileName) # ID3 is only the tags and duration isn't stored in ID3 tags, we have to use streaminfo
-    songDuration = round(float(audio.info.pprint().split(", ")[4].split()[0])) # i get the distinct impression this is a fucking terrible way to do this, if anyone has a better idea please do let me know
+    songDuration = round(float(audio.info.pprint().split(", ")[-1].split()[0])) # i get the distinct impression this is a fucking terrible way to do this, if anyone has a better idea please do let me know
     song = songMetadata(audioTags.get('TIT2')\
                         , audioTags.get('TPE1')\
                         , audioTags.get('TALB')\
