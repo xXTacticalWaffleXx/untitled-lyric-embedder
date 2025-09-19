@@ -1,5 +1,3 @@
-
-
 def process_lyrics(response, result = -1, usePlain = False):
     if result != -1: 
         response_json = response.json()[result]
