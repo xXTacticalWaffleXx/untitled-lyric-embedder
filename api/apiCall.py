@@ -50,9 +50,10 @@ def api_call(song):
                     match user_input:
                         case "F" | "f" | args.autoFailback:
                             if response.json()["plainLyrics"] == None: continue
-                            return process_lyrics(response, False)
+                            return process_lyrics(response)
                         case "K" | "k" | args.autoContinueSearch:
-                            print("keep looking isn't implemented yet, sorry TwT")
+                            v = fuzzySearch(song, response)
+                            return process_lyrics(v[0], v[1], v[2])
                         case "S" | "s" | args.autoSkip:
                             print("skipping this song")
                             return -1
