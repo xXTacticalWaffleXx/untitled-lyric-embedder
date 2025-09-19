@@ -9,12 +9,16 @@ def api_call_fuzzy(url):
     response = requests.get(url, headers)
 
     if response.status_code == 200:
-        print(len(response.json()))
         for _ in range(len(response.json())):
             if response.json()[_] == None: break
             if response.json()[_][mode] == None: continue
             print(response.json()[_][mode])
-            print("Are these the lyrics you're looking for? [y/n]")
+            print()
+            print("Song title: ", response.json()[_]["trackName"])
+            print("Album: ", response.json()[_]["albumName"])
+            print("Artist: ", response.json()[_]["artistName"])
+            print()
+            print("Are these the lyrics you're looking for? [y/n] ", end="")
             while True:
                 user_input = str(input())
                 match user_input:
@@ -52,7 +56,7 @@ def fuzzySearch(song, plainLyrics):
         print("Syncronised lyrics were unable to be found")
         if plainLyrics != None: 
             print("Unsyncronised lyrics were found in the exact search, would you like to failback to them")
-            print("[Y]es/[P]review/Non exact [S]earch for unsynced lyrics/[N]o")
+            print("[Y]es/[P]review/Non exact [S]earch for unsynced lyrics/[N]o", end="")
             while True:
                 user_input = input()
                 match user_input:
@@ -60,7 +64,7 @@ def fuzzySearch(song, plainLyrics):
                         return(plainLyrics, -1, True)
                     case "P" | "p":
                         print(plainLyrics["plainLyrics"])
-                        print("[Y]es/[P]review/Non exact [S]earch for unsynced lyrics/[N]o")
+                        print("[Y]es/[P]review/Non exact [S]earch for unsynced lyrics/[N]o", end="")
                     case "S" | "s":
                         mode = "plainLyrics"
                         return fuzzySearch(song, plainLyrics)
@@ -68,7 +72,7 @@ def fuzzySearch(song, plainLyrics):
                         return -1
 
         else:
-            print("Would you like to search for unsyncronised lyrics")
+            print("Would you like to search for unsyncronised lyrics", end="")
             print("Y/n")
             while True:
                 user_input = input()

@@ -8,10 +8,10 @@ from api.fuzzySearch import fuzzySearch
 from api.headers import headers
 
 noLyricMessage = '''no lyrics were found in this songs entry, is this song instrumental? Do you want to keep looking or skip this song?\n\
-[K]eep looking, [S]kip'''
+[K]eep looking, [S]kip '''
 
 noSyncedLyricsMessage = '''Unsynchronised lyrics were found, do you want to failback to unsynchronised lyrics, keep looking for syncronised lyrics or skip this song?\n\
-[F]ailback, [K]eep looking, [S]kip'''
+[F]ailback, [K]eep looking, [S]kip '''
 
 instrumentalMessage = 'This song is taged as instrumental on LRCLib: skipping'
 
@@ -43,8 +43,8 @@ def api_call(song):
                     print(instrumentalMessage)
                     return -1
                 elif response.json()["plainLyrics"] != None:
-                    print(noSyncedLyricsMessage)
-                else: print (noLyricMessage)
+                    print(noSyncedLyricsMessage, end="")
+                else: print (noLyricMessage, end="")
                 while True:
                     user_input = str()
                     if args.autoContinueSearch: user_input = "k"
