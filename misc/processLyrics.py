@@ -15,6 +15,15 @@ def process_lyrics(response, result = -1, usePlain = False):
         for line in response_json["syncedLyrics"].splitlines():
             if "] " not in line: line = line.replace(']', '] ')
             USLTLyrics = USLTLyrics + line.replace(" ", "", 1) + "\n"
+        # This code is supposed to handle standards compliant ID3 syncronised lyrics
+        # However every player i have seen so far has respected LRC formated lyrics
+        # embeded into the unsyncronised lyrics tag, I'm going to get this working
+        # eventually but at the moment its not a priority, if this script doesn't
+        # work for your player, specifically your player can handle syncronised
+        # embeded lyrics and you are seeing LRC formatted time stamps in
+        # unsyncronised lyrics, please get in touch with the song you're trying to
+        # use and the player you're trying to use
+        #
         # for line in response.json()["syncedLyrics"].splitlines():
         #     if "] " not in line: line = line.replace(']', '] ')
         #     x = line.split()[0]
