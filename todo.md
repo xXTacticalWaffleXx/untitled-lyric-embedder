@@ -6,8 +6,6 @@ changes in **bold** are ones that i need to do before i consider this
 fix error where what appears to be LRC markdown is tripping up the program, 
 see muscle museum on LRCLib
 
-make flac handler compatible with standard flac synced lyrics
-
 fix issue where album metadata with an & sign breaks the api call, see
 peace & love by dylan brady
 # Important changes
