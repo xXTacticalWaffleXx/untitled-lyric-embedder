@@ -9,6 +9,7 @@ class args:
     autoSkip = False
     autoFailback = False
     autoContinueSearch = False
+    forceFuzzy = False
 
     target = ""
 
@@ -32,6 +33,8 @@ def handler():
                     args.autoFailback = True
                 case "--lyrics-autoContinue":
                     args.autoContinueSearch = True
+                case "--force-fuzzy-search":
+                    args.forceFuzzy = True
                 case _:
                     if x == sys.argv[-1]:
                         args.target = x

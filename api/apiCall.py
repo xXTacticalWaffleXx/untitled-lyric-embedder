@@ -29,6 +29,10 @@ def api_call(song):
         print(url)
         return -1
     
+    if args.forceFuzzy:
+        v = fuzzySearch(song, None)
+        return process_lyrics(v[0], v[1], v[2])
+
     try:
         response = requests.get(url, headers)
 

@@ -9,6 +9,7 @@ Luna's untitled lyric embedder
 --lyrics-autoSkip: automatically skip songs without syncronised lyrics
 --lyrics-autoContiune: automatically continue searching for syncronised lyrics if none are found at first
 --lyrics-autoFailback: automatically failback to unsyncronised lyrics if synchronised lyrics cann't be found but syncronised lyrics can
+--force-fuzzy-search: force non exact searching
 """
 
 def print_help():
