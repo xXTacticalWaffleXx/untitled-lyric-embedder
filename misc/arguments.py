@@ -37,8 +37,9 @@ def handler():
                     args.forceFuzzy = True
                 case _:
                     if x == sys.argv[-1]:
-                        args.target = x
-                    
-    return args
+                        args.target = x              
+    else:
+        args.help = True
 
+    return args
 args = handler()
