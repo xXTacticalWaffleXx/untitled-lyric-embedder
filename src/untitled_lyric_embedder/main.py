@@ -17,7 +17,6 @@ target = sys.argv[-1]
 versionNumber = "vbeta0.0.0"
 
 def main():
-    print("main called")
     if args.help: print_help()
     if args.target == "": sys.exit()
     if args.recursive:
