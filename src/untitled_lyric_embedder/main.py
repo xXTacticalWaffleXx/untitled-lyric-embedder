@@ -6,17 +6,18 @@ import sys
 import json
 import os
 
-from misc.arguments import args
-from misc.help import print_help
+from .misc.arguments import args
+from .misc.help import print_help
 
-from handlers.mp3 import handle_MP3
-from handlers.flac import handle_flac
+from .handlers.mp3 import handle_MP3
+from .handlers.flac import handle_flac
 
 target = sys.argv[-1]
 
 versionNumber = "vbeta0.0.0"
 
 def main():
+    print("main called")
     if args.help: print_help()
     if args.target == "": sys.exit()
     if args.recursive:
@@ -59,5 +60,3 @@ def check_compatibility(filePath):
             handle_flac(filePath)
         case _:
             print(f"{filePath} this script currently only supports mp3 and flac files, sorry TwT")
-    
-main()

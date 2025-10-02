@@ -1,7 +1,7 @@
 import requests
 
-from api.headers import headers
-from misc.arguments import args
+from untitled_lyric_embedder.api.headers import headers
+from untitled_lyric_embedder.misc.arguments import args
 
 mode = "syncedLyrics"
 

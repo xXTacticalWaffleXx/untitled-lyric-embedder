@@ -1,0 +1,25 @@
+[project]
+name = "untitled-lyric-embedder"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "certifi==2025.8.3",
+    "charset-normalizer==3.4.3",
+    "idna==3.10",
+    "mutagen==1.47.0",
+    "requests==2.32.5",
+    "urllib3==2.5.0",
+]
+
+[build-system]
+requires = ["uv_build >= 0.8.17, <0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "untitled_lyric_embedder"
+module-root = "src"
+
+[project.scripts]
+lyric-embedder = "untitled_lyric_embedder.main:main"

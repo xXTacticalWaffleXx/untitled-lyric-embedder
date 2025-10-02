@@ -1,11 +1,11 @@
 import requests
 import sys
 
-from misc.processLyrics import process_lyrics
-from misc.arguments import args
+from untitled_lyric_embedder.misc.processLyrics import process_lyrics
+from untitled_lyric_embedder.misc.arguments import args
 
-from api.fuzzySearch import fuzzySearch
-from api.headers import headers
+from untitled_lyric_embedder.api.fuzzySearch import fuzzySearch
+from untitled_lyric_embedder.api.headers import headers
 
 noLyricMessage = '''no lyrics were found in this songs entry, is this song instrumental? Do you want to keep looking or skip this song?\n\
 [K]eep looking, [S]kip '''

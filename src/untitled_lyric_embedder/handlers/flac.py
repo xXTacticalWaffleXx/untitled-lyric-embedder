@@ -1,8 +1,8 @@
 from mutagen.flac import FLAC, StreamInfo
 
-from api.apiCall import api_call
-from misc.arguments import args
-from misc.songMetadata import songMetadata
+from untitled_lyric_embedder.api.apiCall import api_call
+from untitled_lyric_embedder.misc.arguments import args
+from untitled_lyric_embedder.misc.songMetadata import songMetadata
 
 def handle_flac(filename):
     audio = FLAC(filename)
