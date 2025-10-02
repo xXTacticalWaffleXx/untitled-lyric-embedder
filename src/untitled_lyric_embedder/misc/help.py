@@ -1,5 +1,9 @@
+from importlib.metadata import version
+
+ver = version('untitled_lyric_embedder')
+
 help = f"""
-Luna's untitled lyric embedder
+Luna's untitled lyric embedder {ver}
 
 -h: Show this message
 -d: Show debug information
