@@ -8,6 +8,8 @@ see muscle museum on LRCLib
 
 fix issue where album metadata with an & sign breaks the api call, see
 peace & love by dylan brady
+# REALLY important changes
+write a test suite
 # Important changes
 
 **add separate modes for musicolet compatibility and compatibility with players
