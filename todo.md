@@ -17,6 +17,8 @@ that are expecting plain unsynced lyrics**
 
 add an option to import lyrics from a text file
 
+gracefully handle Ctrl+C interupts
+
 **implement the argparse library instead of handrolling my own function**
 # less important
 also add the ability to add lyrics with an LRCLIB id
