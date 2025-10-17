@@ -25,3 +25,5 @@ also add the ability to add lyrics with an LRCLIB id
 
 # unimportant tasks
 add some sort of blank lyric to instrumental songs
+
+rewrite this code to run on absolute paths
