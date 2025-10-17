@@ -19,6 +19,7 @@ versionNumber = "vbeta0.0.0"
 def main():
     if args.help: print_help()
     if args.target == "": sys.exit()
+    if args.debug: print("DEBUG: " + target)
     if args.recursive:
         if os.path.isdir(target):
             handle_recursion(target)
@@ -43,7 +44,9 @@ def check_compatibility(filePath):
     WMPSystemStrings = {'AlbumArtSmall.jpg', 'Folder.jpg'}
     # i hate this but can't think of a nicer way to do it, i'm terrible at python so if there is one please
     # do let me know
-    filename = filePath.rsplit("\\", 1)[1]
+    filename = filePath
+    if "\\" in filename: filename = filePath.rsplit("\\", 1)[1] #only get the name of the file, not the full path
+    if "/" in filename: filename = filePath.rsplit("/", 1)[1] #only get the name of the file, not the full path
     if filename in WMPSystemStrings\
     or filename.startswith("AlbumArt_") and filename.endswith("_Large.jpg")\
     or filename.startswith("AlbumArt_") and filename.endswith("_Small.jpg"):
