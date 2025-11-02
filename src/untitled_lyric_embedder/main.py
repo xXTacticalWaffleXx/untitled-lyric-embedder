@@ -5,6 +5,7 @@ import mutagen
 import sys
 import json
 import os
+import signal
 
 from .misc.arguments import args
 from .misc.help import print_help
@@ -16,7 +17,14 @@ target = sys.argv[-1]
 
 versionNumber = "vbeta0.0.0"
 
+def SIGINThandler(signum, frame):
+    print()
+    print("Ctrl+C received, exiting")
+    sys.exit()
+
+
 def main():
+    signal.signal(signal.SIGINT, SIGINThandler)
     if args.help: print_help()
     if args.target == "": sys.exit()
     if args.debug: print("DEBUG: " + target)
