@@ -66,7 +66,8 @@ def api_call(song):
             return process_lyrics(response)
         else:
             if response.status_code == 404:
-                print(f"error 404: An entry for {humanReadableSongTitle} could not be found on LRCLIB, is the metadata of this file correct?")
+                print(f"error 404: An entry for {humanReadableSongTitle} could not be found on LRCLIB, is the metadata of this file correct? performing fuzzy search")
+                fuzzySearch(song, None) # passing none tells fuzzySearch() that plain lyrics could not be found
             else:
                 print('error', response.status_code)
             return -1
