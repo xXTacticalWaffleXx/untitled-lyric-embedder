@@ -27,6 +27,8 @@ def api_call_fuzzy(url):
                         else: return (response, _, False)
                     case "N" | "n":
                         break
+                    case _:
+                        print("Are these the lyrics you're looking for? [y/n] ", end="")
         return -1
 
 def fuzzySearch(song, plainLyrics):
@@ -70,6 +72,8 @@ def fuzzySearch(song, plainLyrics):
                         return fuzzySearch(song, plainLyrics)
                     case "N" | "n":
                         return -1
+                    case _:
+                        print("[Y]es/[P]review/Non exact [S]earch for unsynced lyrics/[N]o", end="")
 
         else:
             print("Would you like to search for unsyncronised lyrics", end="")
@@ -82,6 +86,9 @@ def fuzzySearch(song, plainLyrics):
                         fuzzySearch()
                     case "N" | "n":
                         return -1
+                    case _:
+                        print("Would you like to search for unsyncronised lyrics", end="")
+                        print("Y/n")
     else:
         print("Sorry no lyrics could be found")
         return -1
