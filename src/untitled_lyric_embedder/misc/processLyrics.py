@@ -21,8 +21,8 @@ def process_lyrics(response, result = -1, usePlain = False):
         # eventually but at the moment its not a priority, if this script doesn't
         # work for your player, specifically your player can handle syncronised
         # embeded lyrics and you are seeing LRC formatted time stamps in
-        # unsyncronised lyrics, please get in touch with the song you're trying to
-        # use and the player you're trying to use
+        # unsyncronised lyrics, please get in touch with me over github with
+        # the song you're trying to listen to and the player you're trying to use
         #
         # for line in response.json()["syncedLyrics"].splitlines():
         #     if "] " not in line: line = line.replace(']', '] ')
